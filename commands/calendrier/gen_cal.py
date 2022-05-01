@@ -210,16 +210,19 @@ def gen_cal(format: str, file_name: str, uid: str) -> None:
     ## Transform calendar into the desired one ##
     if format == "month":
         cal = month_cal
+        size = (535,500)
     elif format == "week":
         cal = week_cal(month_cal, dd)
+        size = (535,200)
     elif format == "day":
         cal = day_cal(month_cal, dd)
+        size = (140,200)
     ## Format calendar ##
     cal = format_cal(cal)
     cal = today_css(cal, dd)
     cal = user_events(cal, mm, uid)
     # Calendar image generation ##
-    hti = Html2Image(size=(535,455), # 515,455
+    hti = Html2Image(size=size, # 535,455 
         output_path=f'{path}\\commands\\calendrier\\generated')
     # name = str(dt.datetime.now().date())
     hti.screenshot(html_str=cal, css_str=css, save_as=file_name)
