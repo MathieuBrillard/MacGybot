@@ -9,7 +9,6 @@ import lightbulb
 import asyncio
 
 #TODO: commande de gestion du serveur (avec création de rôles et channel auto)
-#TODO: commande pour faire des sondages
 #TODO: commande pour faire de la communication (avec un embed, etc)
 
 ## Retrieving TOKEN ##
