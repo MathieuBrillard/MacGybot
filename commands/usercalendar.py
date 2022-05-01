@@ -14,7 +14,8 @@ from lightbulb import commands
 
 
 # The options the command will have.
-@lightbulb.option("format", "The format of calendar you want to get.", str)
+@lightbulb.option("format", "The format of calendar you want to get " + \
+                  "(day, week or month).", str)
 # Convert the function into a command
 @lightbulb.command("usercalendar", "Get a calendar.")
 # Define the types of command that this function will implement
