@@ -1,5 +1,11 @@
 import sqlite3
 
+""" 
+You can use this file to generate the database.
+You must execute it inside the folder "assets/db/",
+so the database will be created here.
+"""
+
 def gen_db():
     # connect to the db
     connection = sqlite3.connect("calendar.db")

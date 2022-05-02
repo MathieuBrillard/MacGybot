@@ -1,6 +1,6 @@
 import os
 import sqlite3
-import commands.calendrier.errors as errors
+import commands.errors.errors as errors
 import datetime as dt
 import calendar
 from html2image import Html2Image
@@ -199,7 +199,7 @@ def gen_cal(format: str, file_name: str, uid: str) -> None:
     """
     ## Check if the argument is correct ##
     if format != "day" and format != "week" and format != "month":
-        raise errors.IncorrectFormat(format)
+        raise errors.IncorrectCalFormat(format)
     ## Retrieve current date ##
     current_date = dt.datetime.now().date()
     yyyy = int(str(current_date).split("-")[0])

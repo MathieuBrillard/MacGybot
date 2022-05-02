@@ -5,7 +5,7 @@ import datetime as dt
 import os
 # errors and calendar generation
 from commands.calendrier.gen_cal import gen_cal
-from commands.calendrier.errors import IncorrectFormat
+from commands.errors.errors import IncorrectCalFormat
 # discord libs
 import hikari
 import lightbulb
@@ -28,8 +28,8 @@ async def usercalendar(ctx: lightbulb.context.Context) -> None:
         file_name = user_id + "_" + str(dt.datetime.now().date()) + "_0.png"
         path = os.getcwd()
         gen_cal(format, file_name, user_id)
-    except IncorrectFormat as e: # handle arguments errors
-        await ctx.respond(IncorrectFormat.__str__(e))
+    except IncorrectCalFormat as e: # handle arguments errors
+        await ctx.respond(IncorrectCalFormat.__str__(e))
         return
     ## dropdown creation ##
     select_menu = (
@@ -75,7 +75,7 @@ async def usercalendar(ctx: lightbulb.context.Context) -> None:
     try:
         event = await ctx.bot.wait_for(
             hikari.InteractionCreateEvent,
-            timeout = 10, #TODO: set it to 60
+            timeout = 60,
             predicate = lambda e:
                 isinstance(e.interaction, hikari.ComponentInteraction)
                 and e.interaction.user.id == ctx.author.id
@@ -145,7 +145,7 @@ async def handle_dropdown(ctx: lightbulb.context.Context, format: str, old_msg: 
     try:
         event = await ctx.bot.wait_for(
             hikari.InteractionCreateEvent,
-            timeout = 10, #TODO: set it to 60
+            timeout = 60,
             predicate = lambda e:
                 isinstance(e.interaction, hikari.ComponentInteraction)
                 and e.interaction.user.id == ctx.author.id
